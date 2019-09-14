@@ -1,0 +1,44 @@
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] countwords = new int[words.length];
+        int[] countqueries = new int[queries.length];   
+        int i,j;
+        
+        for(i=0;i<words.length;i++)
+        {
+            countwords[i] = logic(words[i]);
+        }
+        
+        for(i=0;i<queries.length;i++)
+        {
+            countqueries[i] = logic(queries[i]);
+        }
+        Arrays.sort(countwords);
+    
+        for(i=0;i<countqueries.length;i++){
+        j=0;
+        for(;j<countwords.length;j++){
+            if(countwords[j]>countqueries[i]){
+                break;
+            }
+        }
+        countqueries[i] = countwords.length-j;
+    }
+        return countqueries;
+}
+    public int logic(String word){
+        int count =1;
+        char[] ch = word.toCharArray();
+        int c = Character.getNumericValue(ch[0]);
+        
+        for(int i=1;i<ch.length;i++){
+            if(c>Character.getNumericValue(ch[i])){
+                count =1;
+                c = Character.getNumericValue(ch[i]);
+            }else if(c==Character.getNumericValue(ch[i])){
+                count++;
+            }
+        }
+        return count;
+    }
+}
