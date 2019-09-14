@@ -1,0 +1,31 @@
+class Solution {
+    public String reverseWords(String sh) {
+        String[] parts = sh.split(" "); // first split the string using a delimiter
+         
+        for(int i=0;i<parts.length;i++){
+            parts[i] = logic(parts[i]); //reverse each word
+        }
+        StringBuilder sb = new StringBuilder();
+        for(String s: parts){
+            sb.append(s); // append each reversed string to the string builder and add a space at the end.
+            sb.append(" ");
+        }
+        if (sb.length() > 0) { // this is for removing the last space at the end of the complete string
+        sb.setLength(sb.length() - 1);
+        }
+      return sb.toString();  
+    }
+    public String logic(String part){
+        char[] p = part.toCharArray();
+        String str1 = " ";
+        int j = p.length-1;
+        char temp;
+        for(int i=0;i<j;i++,j--){
+            temp = p[i];
+            p[i]=p[j];
+            p[j]=temp;
+        }
+           str1 = str1.copyValueOf(p); 
+        return str1;
+    }
+}
