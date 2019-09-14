@@ -1,0 +1,30 @@
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        String localname;
+        String domain;
+        Set<String> set = new HashSet<>();
+      for(String s: emails){
+          String[] parts = s.split("@"); // first lets divide the string into domain part and localpart
+            localname = parts[0]; 
+            domain = parts[1]; 
+          localname = logic(parts[0]); // now lets process the localpart by applying the given conditions
+          StringBuilder sb = new StringBuilder(); // final string formed
+          sb.append(localname);
+          sb.append('@');
+          sb.append(domain);
+          set.add(sb.toString());
+      }
+        return set.size();
+    }
+    public String logic(String s){
+        StringBuilder sb = new StringBuilder(); 
+        for(char c: s.toCharArray()){
+            if(c=='+'){ // if we see a '+' sign then stop constructiong the stringbuilder and return it
+             return sb.toString();   
+            }else if(c!='.'){ 
+               sb.append(c); 
+            }
+        }
+        return sb.toString();
+    }
+}
