@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n==1 || n==2){
+            return true;
+        }  
+      if((n%10)%2!=0){            
+            return false;
+        }
+        n = n/2;
+        
+        int sum = 1;
+        while(sum<n && sum!=n){
+            sum = sum*2;
+        }
+        if(sum ==n){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+}
