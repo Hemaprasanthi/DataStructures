@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isStrobogrammatic(String num) {
+      //reverse the number
+        String reverse;
+        StringBuilder st = new StringBuilder();
+        HashMap<Character, Character> hm = new HashMap<>();
+        hm.put('0','0');
+        hm.put('1','1');
+        hm.put('6','9');
+        hm.put('8','8');
+        hm.put('9','6');
+        
+        for(int i=num.length()-1;i>=0;--i){
+          if(hm.containsKey(num.charAt(i))){
+              st.append(hm.get(num.charAt(i)));
+          }else{
+              return false;
+          }
+        }
+        reverse = st.toString();
+      return reverse.equals(num);  
+    }
+}
